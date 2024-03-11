@@ -21,19 +21,20 @@ namespace GradeBook.GradeBooks
                 throw new InvalidOperationException();
             else
             {
-                int greaterGradeCount = 0;
-                foreach (Student student in Students)
-                    if (student.AverageGrade > averageGrade)
-                        greaterGradeCount += 1;
-
                 int numTop20Percent = (int)(Students.Count * 0.2);
+                int studentsWithBetterGrades = 0;
+
+                foreach (var student in Students)
+                    if (student.AverageGrade > averageGrade)
+                        studentsWithBetterGrades++;
+
                 char gradeLetter = 'A';
 
-                for (int i = 1; i <= Students.Count; i++)
-                {
-                    if (i % numTop20Percent == 0)
-                        gradeLetter++;
-                }
+                for (int i = 1; i <= studentsWithBetterGrades / numTop20Percent; i++)
+                    gradeLetter++;
+
+                if (gradeLetter == 'E')
+                    return 'F';
 
                 return gradeLetter;
             }
