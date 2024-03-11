@@ -129,7 +129,7 @@ namespace GradeBook.GradeBooks
                     break;
             }
 
-            if (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled)
+            if (IsWeighted && (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled))
                 gpaValue += 1;
 
             return gpaValue;
